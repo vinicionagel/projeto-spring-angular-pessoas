@@ -32,7 +32,7 @@ export class PessoaComponent implements OnInit {
       nome: [null, [Validators.required]],
       cpf: ['', [Validators.required, CustomValidators.cnpjOrCpfValidator]],
       dataNascimento: [null, [Validators.required]],
-      email: [null],
+      email: [null, [Validators.email]],
       sexo: [null],
       naturalidade: [null],
       nacionalidade: [null]
@@ -72,10 +72,17 @@ export class PessoaComponent implements OnInit {
   }
 
   private errorMessageTrySaveOrUpdatePessoa() {
+
     return (error) => {
-      this.toastr.error(error.error.message, 'Error', {
-        timeOut: 3000,
-      });
+      if (error.error.message) {
+        this.toastr.error(error.error.message, 'Error', {
+          timeOut: 3000,
+        });
+      } else {
+        this.toastr.error('Cpf já cadastrado', 'Error', {
+          timeOut: 3000,
+        });
+      }
     };
   }
 

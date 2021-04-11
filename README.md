@@ -48,6 +48,7 @@ docker-compose up
 ```
 
 Obs: Com isso já sobe toda a parte de banco de dados, front e api.
+Front acesso: localhost:4200
 
 <h3> Usuario e senha da API: </h3>
 

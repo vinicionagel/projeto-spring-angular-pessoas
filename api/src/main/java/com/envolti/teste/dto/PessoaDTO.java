@@ -12,7 +12,6 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
 @Data
@@ -24,10 +23,8 @@ public class PessoaDTO {
     private Long id;
 
     @NotNull
-    @Size(min = 1, max = 200)
     private String nome;
 
-    @Size(min = 1, max = 200)
     @Email(message = "Email should be valid")
     private String email;
 

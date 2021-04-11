@@ -94,7 +94,7 @@ public class PessoaControllerTest {
     void whenPOSTIsCalledWithoutRequiredFieldThenAnErrorIsReturned() throws Exception {
         // given
         PessoaDTO pessoaDTO = PessoaDTOBuilder.builder().build().toPessoaDTO();
-        pessoaDTO.setEmail(null);
+        pessoaDTO.setCpf(null);
 
         // then
         mockMvc.perform(post(PESSOA_API_URL_PATH)
