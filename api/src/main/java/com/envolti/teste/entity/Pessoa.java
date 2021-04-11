@@ -33,13 +33,12 @@ public class Pessoa {
     private String nome;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
     private Sexo sexo;
 
     @Email(message = "Email should be valid")
     private String email;
 
-    @Column(name = "data_nascimento")
+    @Column(name = "data_nascimento", nullable = false)
     private LocalDate dataNascimento;
 
     private String naturalidade;

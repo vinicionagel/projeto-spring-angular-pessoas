@@ -1,7 +1,6 @@
 
 
 <h3>Teste:</h3>
-```
 A demanda
 Deverá ser criada uma aplicação de cadastro de pessoas:
 1) Back-end
@@ -24,7 +23,6 @@ Deverá ser criada uma aplicação de cadastro de pessoas:
    A aplicação deverá possuir um endpoint /source acessível sem autenticação via HTTP GET que deverá retornar o link do projeto no github com o código fonte do projeto desenvolvido.
    Importante 1: O projeto deverá ter testes unitários da aplicação.
    Importante 2: O projeto deverá utilizar as versões mais recentes das tecnologias/frameworks selecionados.
-```
 <h3>Para executar o projeto no terminal, digite o seguinte comando:<h3>
 
 ```shell script

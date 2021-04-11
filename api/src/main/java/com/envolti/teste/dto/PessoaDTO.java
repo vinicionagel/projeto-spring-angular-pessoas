@@ -27,13 +27,11 @@ public class PessoaDTO {
     @Size(min = 1, max = 200)
     private String nome;
 
-    @NotNull
     @Size(min = 1, max = 200)
     @Email(message = "Email should be valid")
     private String email;
 
     @Enumerated(EnumType.STRING)
-    @NotNull
     private Sexo sexo;
 
     @JsonFormat(pattern="yyyy-MM-dd")
@@ -44,6 +42,7 @@ public class PessoaDTO {
     private String nacionalidade;
 
     @CPF(message = "Cpf inválido")
+    @NotNull
     private String cpf;
 
     public void limparCampoCpf() {

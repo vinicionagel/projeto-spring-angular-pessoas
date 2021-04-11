@@ -32,10 +32,10 @@ export class PessoaComponent implements OnInit {
       nome: [null, [Validators.required]],
       cpf: ['', [Validators.required, CustomValidators.cnpjOrCpfValidator]],
       dataNascimento: [null, [Validators.required]],
-      email: [null, [Validators.required]],
-      sexo: [null, [Validators.required]],
-      naturalidade: [null, [Validators.required]],
-      nacionalidade: [null, [Validators.required]]
+      email: [null],
+      sexo: [null],
+      naturalidade: [null],
+      nacionalidade: [null]
     });
   }
 
@@ -65,14 +65,18 @@ export class PessoaComponent implements OnInit {
     this.pessoaService.salvarPessoa(pessoa).subscribe(() => {
         this.carregarPessoas();
         this.form.reset();
-        this.toastr.success('Sucesso', 'Criado', {
+        this.toastr.success('Registro criado com sucesso', 'Salvo', {
           timeOut: 3000,
         });
-      }, () => {
-      this.toastr.error('Erro', 'ao salvar', {
+      }, this.errorMessageTrySaveOrUpdatePessoa());
+  }
+
+  private errorMessageTrySaveOrUpdatePessoa() {
+    return (error) => {
+      this.toastr.error(error.error.message, 'Error', {
         timeOut: 3000,
       });
-    });
+    };
   }
 
   carregarPessoaAlteracao(pessoa: Pessoa) {
@@ -84,13 +88,9 @@ export class PessoaComponent implements OnInit {
     this.pessoaService.alterarPessoa(pessoa).subscribe(() => {
       this.carregarPessoas();
       this.form.reset();
-      this.toastr.success('Sucesso', 'Alterado', {
+      this.toastr.success('Registro alterado com sucesso', 'Alterado', {
         timeOut: 3000,
       });
-    }, () => {
-      this.toastr.error('Sucesso', 'ao salvar', {
-        timeOut: 3000,
-      });
-    });
+    }, this.errorMessageTrySaveOrUpdatePessoa());
   }
 }

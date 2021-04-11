@@ -19,7 +19,6 @@
         <div class="form-group">
           <label for="email">Email:</label>
           <input placeholder="E-mail" type="email" name="E-mail" formControlName="email" class="form-control" id="email">
-          <app-form-validator [control]="form.controls.email" ></app-form-validator>
         </div>
 
         <div class="form-group">
@@ -31,13 +30,11 @@
         <div class="form-group">
           <label for="naturalidade">Nacionalidade:</label>
           <input type="text" placeholder="nacionalidade" formControlName="nacionalidade" name="nacionalidade" class="form-control" id="nacionalidade">
-          <app-form-validator [control]="form.controls.nacionalidade" ></app-form-validator>
         </div>
 
       <div class="form-group">
         <label for="naturalidade">Naturalidade:</label>
         <input type="text" placeholder="naturalidade" formControlName="naturalidade" name="naturalidade" class="form-control" id="naturalidade">
-        <app-form-validator [control]="form.controls.naturalidade" ></app-form-validator>
       </div>
 
         <div class="form-group">
@@ -45,7 +42,6 @@
           <label for="masculino"> Masculino</label><br>
           <input type="radio" id="female" formControlName="sexo" value="FEMININO">
           <label for="female"> Feminino</label><br>
-          <app-form-validator [control]="form.controls.sexo" ></app-form-validator>
         </div>
         <button class="btn btn-success">Salvar</button>
     </div>
