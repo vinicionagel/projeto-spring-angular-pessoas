@@ -45,4 +45,8 @@ public class PessoaDTO {
 
     @CPF(message = "Cpf inválido")
     private String cpf;
+
+    public void limparCampoCpf() {
+        this.cpf = cpf.replaceAll("[^0-9]", "");
+    }
 }

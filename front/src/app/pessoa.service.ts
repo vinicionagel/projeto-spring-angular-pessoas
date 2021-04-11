@@ -20,4 +20,8 @@ export class PessoaService {
   salvarPessoa(pessoa: Pessoa) {
     return this.http.post(`http://localhost:8080/api/v1/pessoas`, pessoa);
   }
+
+  alterarPessoa(pessoa: Pessoa) {
+    return this.http.put(`http://localhost:8080/api/v1/pessoas/${pessoa.id}`, pessoa);
+  }
 }

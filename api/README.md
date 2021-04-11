@@ -43,14 +43,24 @@ Após executar o comando acima, basta apenas abrir o seguinte endereço e visual
 http://localhost:8080/api/v1/pessoas
 ```
 
-<h3>Para subir a aplicação com docker:<h3>
+<h3>Para subir a aplicação<h3>
 
 ```
 docker-compose up
 ```
 
+Obs: Com isso já sobe toda a parte de banco de dados, front e api.
+
+<h3> Usuario e senha da API: </h3>
+
+```
+Usuario:admin
+Senha:admin
+```
+
 <h3> Documentação da API: </h3>
 
 http://localhost:8080/swagger-ui.html#/
+
 
 

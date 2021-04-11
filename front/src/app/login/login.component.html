@@ -7,18 +7,15 @@
           <div class="alert alert-warning" *ngIf='invalidLogin'>{{errorMessage}}</div>
           <div class="alert alert-success" *ngIf='loginSuccess'>{{successMessage}}</div>
           <div class="form-group">
-            <label for="email">User Name :</label>
-            <input type="text" class="form-control" id="username" [(ngModel)]="username" placeholder="Enter User Name"
-              name="username">
+            <label for="email">Usuário:</label>
+            <input type="text" class="form-control" id="username" [(ngModel)]="username" placeholder="Entre com seu usuário" name="username">
           </div>
           <div class="form-group">
-            <label for="pwd">Password:</label>
-            <input type="password" class="form-control" [(ngModel)]="password" id="password" placeholder="Enter password"
-              name="password">
+            <label for="pwd">Senha:</label>
+            <input type="password" class="form-control" [(ngModel)]="password" id="pwd" placeholder="Entre com sua senha" name="password">
           </div>
           <button (click)=handleLogin() class="btn btn-success">Login</button>
         </form>
       </div>
     </div>
   </div>
-  

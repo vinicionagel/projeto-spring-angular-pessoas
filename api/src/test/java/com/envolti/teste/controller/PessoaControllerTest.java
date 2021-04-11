@@ -59,7 +59,7 @@ public class PessoaControllerTest {
     }
 
     @Test
-    void whenPOSTIsCalledThenABeerIsCreated() throws Exception {
+    void whenPOSTIsCalledThenAPessoaIsCreated() throws Exception {
         // given
         PessoaDTO pessoaDTO = PessoaDTOBuilder.builder().build().toPessoaDTO();
 
@@ -124,6 +124,7 @@ public class PessoaControllerTest {
     void whenGETIsCalledWithoutRegisteredCpfThenNotFoundStatusIsReturned() throws Exception {
         // given
         PessoaDTO pessoaDTO = PessoaDTOBuilder.builder().build().toPessoaDTO();
+        pessoaDTO.limparCampoCpf();
 
         //when
         when(pessoaService.findByCpf(pessoaDTO.getCpf())).thenThrow(PessoaNotFoundException.class);
@@ -152,7 +153,7 @@ public class PessoaControllerTest {
     }
 
     @Test
-    void whenGETListWithoutBeersIsCalledThenOkStatusIsReturned() throws Exception {
+    void whenGETListWithoutPessoasIsCalledThenOkStatusIsReturned() throws Exception {
         // given
         PessoaDTO pessoaDTO = PessoaDTOBuilder.builder().build().toPessoaDTO();
 

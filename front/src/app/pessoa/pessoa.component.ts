@@ -28,6 +28,7 @@ export class PessoaComponent implements OnInit {
   }
   private buildForm(): void {
     this.form = this.formBuilder.group({
+      id: [null],
       nome: [null, [Validators.required]],
       cpf: ['', [Validators.required, CustomValidators.cnpjOrCpfValidator]],
       dataNascimento: [null, [Validators.required]],
@@ -40,17 +41,21 @@ export class PessoaComponent implements OnInit {
 
   deletePessoa(pessoa: Pessoa) {
     console.log(pessoa);
-    this.toastr.success('Sucesso', 'Deletado', {
-      timeOut: 3000,
+    this.pessoaService.deletePessoa(pessoa).subscribe(() => {
+      this.carregarPessoas();
+      this.toastr.success('Sucesso', 'Deletado', {
+        timeOut: 3000,
+      });
     });
-    // this.pessoaService.deletePessoa(pessoa).subscribe(() => {
-    //   this.carregarPessoas();
-    // });
   }
 
   submitForm() {
     this.form.markAllAsTouched();
     if (this.form.valid) {
+      if (this.form.value.id) {
+        this.updatePessoa();
+        return;
+      }
       this.addPessoa();
     }
   }
@@ -63,6 +68,29 @@ export class PessoaComponent implements OnInit {
         this.toastr.success('Sucesso', 'Criado', {
           timeOut: 3000,
         });
+      }, () => {
+      this.toastr.error('Erro', 'ao salvar', {
+        timeOut: 3000,
       });
+    });
+  }
+
+  carregarPessoaAlteracao(pessoa: Pessoa) {
+    this.form.setValue(pessoa);
+  }
+
+  private updatePessoa() {
+    const pessoa = this.form.value;
+    this.pessoaService.alterarPessoa(pessoa).subscribe(() => {
+      this.carregarPessoas();
+      this.form.reset();
+      this.toastr.success('Sucesso', 'Alterado', {
+        timeOut: 3000,
+      });
+    }, () => {
+      this.toastr.error('Sucesso', 'ao salvar', {
+        timeOut: 3000,
+      });
+    });
   }
 }

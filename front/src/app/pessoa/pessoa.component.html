@@ -2,7 +2,8 @@
   <br/>
   <form autocomplete="off" [formGroup]="form" (ngSubmit)="submitForm()">
     <div class="col-md-6 align-items-center" style="left: 25%">
-      <h2 class="text-center">Adicionar Pessoa</h2>
+      <h2 class="text-center">Cadastro de Pessoa</h2>
+      <input formControlName="id" class="form-control" id="id" type="hidden">
         <div class="form-group">
           <label for="nome">Nome:</label>
           <input placeholder="Nome" name="nome" formControlName="nome" class="form-control" id="nome">
@@ -42,11 +43,11 @@
         <div class="form-group">
           <input type="radio" formControlName="sexo" id="masculino" name="sexo" value="MASCULINO">
           <label for="masculino"> Masculino</label><br>
-          <input type="radio" id="female" value="FEMININO">
+          <input type="radio" id="female" formControlName="sexo" value="FEMININO">
           <label for="female"> Feminino</label><br>
           <app-form-validator [control]="form.controls.sexo" ></app-form-validator>
         </div>
-        <button class="btn btn-success">Adicionar</button>
+        <button class="btn btn-success">Salvar</button>
     </div>
   </form>
   <br/>
@@ -62,7 +63,7 @@
         <th scope="col">Id</th>
         <th scope="col">Nome</th>
         <th scope="col">Cpf</th>
-        <th scope="col">Acao</th>
+        <th scope="col" style="text-align: center">Acao</th>
       </tr>
       </thead>
       <tbody>
@@ -70,7 +71,12 @@
         <td>{{pessoa.id}}</td>
         <td>{{pessoa.nome}}</td>
         <td>{{pessoa.cpf}}</td>
-        <td><button type="button" class="btn btn-danger btn-sm ml-1" (click)="deletePessoa(pessoa)">Deletar</button></td>
+        <td>
+          <div style="margin-left: 20%;">
+            <button type="button" class="btn btn-success btn-sm ml-1" (click)="carregarPessoaAlteracao(pessoa)">Alterar</button>
+            <button type="button" class="btn btn-danger btn-sm ml-1" (click)="deletePessoa(pessoa)">Deletar</button>
+          </div>
+        </td>
       </tr>
       </tbody>
     </table>

@@ -32,6 +32,7 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 public class PessoaServiceTest {
 
+    public static final String CPF_VALIDO = "08110629962";
     @Mock
     private PessoaRepository pessoaRepository;
 
@@ -44,11 +45,14 @@ public class PessoaServiceTest {
     void whenPessoaInformedThenItShouldBeCreated() throws PessoaAlreadyRegisteredException {
         // given
         PessoaDTO expectedPessoaDTO = PessoaDTOBuilder.builder().build().toPessoaDTO();
-        Pessoa expectedSavedBeer = pessoaMapper.toModel(expectedPessoaDTO);
+        PessoaDTO createdPessoaWithoutMaskCpf = PessoaDTOBuilder.builder().build().toPessoaDTO();
+        createdPessoaWithoutMaskCpf.limparCampoCpf();
+
+        Pessoa expectedSavedPessoa = pessoaMapper.toModel(createdPessoaWithoutMaskCpf);
 
         // when
-        when(pessoaRepository.findByCpf(expectedPessoaDTO.getCpf())).thenReturn(Optional.empty());
-        when(pessoaRepository.save(expectedSavedBeer)).thenReturn(expectedSavedBeer);
+        when(pessoaRepository.findByCpf(createdPessoaWithoutMaskCpf.getCpf())).thenReturn(Optional.empty());
+        when(pessoaRepository.save(expectedSavedPessoa)).thenReturn(expectedSavedPessoa);
 
         //then
         PessoaDTO createdPessoaDTO = pessoaService.createPessoa(expectedPessoaDTO);
@@ -58,27 +62,51 @@ public class PessoaServiceTest {
     }
 
     @Test
+    void whenPessoaInformedThenItShouldBeCreatedCpfNoMask() throws PessoaAlreadyRegisteredException {
+        // given
+        PessoaDTO expectedPessoaDTO = PessoaDTOBuilder.builder().build().toPessoaDTO();
+        PessoaDTO createdPessoaWithoutMaskCpf = PessoaDTOBuilder.builder().build().toPessoaDTO();
+        createdPessoaWithoutMaskCpf.limparCampoCpf();
+        Pessoa expectedSavedPessoa = pessoaMapper.toModel(createdPessoaWithoutMaskCpf);
+
+        // when
+        when(pessoaRepository.findByCpf(createdPessoaWithoutMaskCpf.getCpf())).thenReturn(Optional.empty());
+        when(pessoaRepository.save(expectedSavedPessoa)).thenReturn(expectedSavedPessoa);
+
+        //then
+        PessoaDTO createdPessoaDTO = pessoaService.createPessoa(expectedPessoaDTO);
+
+        assertThat(createdPessoaDTO.getId(), is(equalTo(expectedPessoaDTO.getId())));
+        assertThat(createdPessoaDTO.getNome(), is(equalTo(expectedPessoaDTO.getNome())));
+        assertThat(createdPessoaDTO.getCpf(), is(equalTo(CPF_VALIDO)));
+    }
+
+    @Test
     void whenPessoaInformedThenItShouldBeUpdate() throws PessoaAlreadyRegisteredException, PessoaNotFoundException {
         // given
         PessoaDTO expectedPessoaDTO = PessoaDTOBuilder.builder().build().toPessoaDTO();
-        Pessoa expectedUpdateBeer = pessoaMapper.toModel(expectedPessoaDTO);
+        PessoaDTO createdPessoaWithoutMaskCpf = PessoaDTOBuilder.builder().build().toPessoaDTO();
+        createdPessoaWithoutMaskCpf.limparCampoCpf();
+        Pessoa expectedUpdatePessoa = pessoaMapper.toModel(createdPessoaWithoutMaskCpf);
 
         // when
-        when(pessoaRepository.findByCpf(expectedPessoaDTO.getCpf())).thenReturn(Optional.of(expectedUpdateBeer));
-        when(pessoaRepository.findById(1l)).thenReturn(Optional.of(expectedUpdateBeer));
-        when(pessoaRepository.save(expectedUpdateBeer)).thenReturn(expectedUpdateBeer);
+        when(pessoaRepository.findByCpf(createdPessoaWithoutMaskCpf.getCpf())).thenReturn(Optional.of(expectedUpdatePessoa));
+        when(pessoaRepository.findById(1l)).thenReturn(Optional.of(expectedUpdatePessoa));
+        when(pessoaRepository.save(expectedUpdatePessoa)).thenReturn(expectedUpdatePessoa);
 
         //then
         PessoaDTO createdPessoaDTO = pessoaService.update(expectedPessoaDTO, expectedPessoaDTO.getId());
 
         assertThat(createdPessoaDTO.getId(), is(equalTo(expectedPessoaDTO.getId())));
         assertThat(createdPessoaDTO.getNome(), is(equalTo(expectedPessoaDTO.getNome())));
+        assertThat(createdPessoaDTO.getCpf(), is(equalTo(CPF_VALIDO)));
     }
 
     @Test
-    void whenAlreadyRegisteredBeerInformedThenAnExceptionShouldBeThrown() {
+    void whenAlreadyRegisteredPessoaInformedThenAnExceptionShouldBeThrown() {
         PessoaDTO expectedPessoaDTO = PessoaDTOBuilder.builder().build().toPessoaDTO();
         Pessoa duplicatedPessoa = pessoaMapper.toModel(expectedPessoaDTO);
+        expectedPessoaDTO.limparCampoCpf();
         duplicatedPessoa.setId(2L);
 
         when(pessoaRepository.findByCpf(expectedPessoaDTO.getCpf())).thenReturn(Optional.of(duplicatedPessoa));
@@ -87,11 +115,11 @@ public class PessoaServiceTest {
     }
 
     @Test
-    void whenValidBeerNameIsGivenThenReturnABeer() throws PessoaNotFoundException {
+    void whenValidPessoaNameIsGivenThenReturnAPessoa() throws PessoaNotFoundException {
         PessoaDTO expectedFoundPessoaDTO = PessoaDTOBuilder.builder().build().toPessoaDTO();
-        Pessoa expectedFoundBeer = pessoaMapper.toModel(expectedFoundPessoaDTO);
+        Pessoa expectedFoundPessoa = pessoaMapper.toModel(expectedFoundPessoaDTO);
 
-        when(pessoaRepository.findByCpf(expectedFoundBeer.getNome())).thenReturn(Optional.of(expectedFoundBeer));
+        when(pessoaRepository.findByCpf(expectedFoundPessoa.getNome())).thenReturn(Optional.of(expectedFoundPessoa));
 
         PessoaDTO foundPessoaDTO = pessoaService.findByCpf(expectedFoundPessoaDTO.getNome());
 
@@ -99,7 +127,7 @@ public class PessoaServiceTest {
     }
 
     @Test
-    void whenNotRegisteredBeerNameIsGivenThenThrowAnException() {
+    void whenNotRegisteredPessoaNameIsGivenThenThrowAnException() {
         PessoaDTO expectedFoundPessoaDTO = PessoaDTOBuilder.builder().build().toPessoaDTO();
 
         when(pessoaRepository.findByCpf(expectedFoundPessoaDTO.getNome())).thenReturn(Optional.empty());
@@ -108,33 +136,33 @@ public class PessoaServiceTest {
     }
 
     @Test
-    void whenListBeerIsCalledThenReturnAListOfBeers() {
+    void whenListPessoaIsCalledThenReturnAListOfPessoas() {
         PessoaDTO expectedFoundPessoaDTO = PessoaDTOBuilder.builder().build().toPessoaDTO();
-        Pessoa expectedFoundBeer = pessoaMapper.toModel(expectedFoundPessoaDTO);
+        Pessoa expectedFoundPessoa = pessoaMapper.toModel(expectedFoundPessoaDTO);
 
-        when(pessoaRepository.findAll()).thenReturn(Collections.singletonList(expectedFoundBeer));
+        when(pessoaRepository.findAll()).thenReturn(Collections.singletonList(expectedFoundPessoa));
 
-        List<PessoaDTO> foundListBeersDTO = pessoaService.listAll();
+        List<PessoaDTO> foundListPessoasDTO = pessoaService.listAll();
 
-        assertThat(foundListBeersDTO, is(not(empty())));
-        assertThat(foundListBeersDTO.get(0), is(equalTo(expectedFoundPessoaDTO)));
+        assertThat(foundListPessoasDTO, is(not(empty())));
+        assertThat(foundListPessoasDTO.get(0), is(equalTo(expectedFoundPessoaDTO)));
     }
 
     @Test
-    void whenListBeerIsCalledThenReturnAnEmptyListOfBeers() {
+    void whenListPessoaIsCalledThenReturnAnEmptyListOfPessoa() {
         when(pessoaRepository.findAll()).thenReturn(Collections.EMPTY_LIST);
 
-        List<PessoaDTO> foundListBeersDTO = pessoaService.listAll();
+        List<PessoaDTO> foundListPessoasDTO = pessoaService.listAll();
 
-        assertThat(foundListBeersDTO, is(empty()));
+        assertThat(foundListPessoasDTO, is(empty()));
     }
 
     @Test
-    void whenExclusionIsCalledWithValidIdThenABeerShouldBeDeleted() throws PessoaNotFoundException {
+    void whenExclusionIsCalledWithValidIdThenAPessoaShouldBeDeleted() throws PessoaNotFoundException {
         PessoaDTO expectedDeletedPessoaDTO = PessoaDTOBuilder.builder().build().toPessoaDTO();
-        Pessoa expectedDeletedBeer = pessoaMapper.toModel(expectedDeletedPessoaDTO);
+        Pessoa expectedDeletedPessoa = pessoaMapper.toModel(expectedDeletedPessoaDTO);
 
-        when(pessoaRepository.findById(expectedDeletedPessoaDTO.getId())).thenReturn(Optional.of(expectedDeletedBeer));
+        when(pessoaRepository.findById(expectedDeletedPessoaDTO.getId())).thenReturn(Optional.of(expectedDeletedPessoa));
         doNothing().when(pessoaRepository).deleteById(expectedDeletedPessoaDTO.getId());
 
         pessoaService.deleteById(expectedDeletedPessoaDTO.getId());

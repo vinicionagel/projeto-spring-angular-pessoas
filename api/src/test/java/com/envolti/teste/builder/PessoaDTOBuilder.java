@@ -31,7 +31,7 @@ public class PessoaDTOBuilder {
     private LocalDate dataNascimento = LocalDate.now();
 
     @Builder.Default
-    private String cpf = "08110629962";
+    private String cpf = "081.106.299-62";
 
 
     public PessoaDTO toPessoaDTO() {

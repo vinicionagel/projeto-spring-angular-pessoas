@@ -22,19 +22,21 @@ public class PessoaService {
     private final PessoaMapper pessoaMapper = PessoaMapper.INSTANCE;
 
     public PessoaDTO createPessoa(PessoaDTO pessoaDTO) throws PessoaAlreadyRegisteredException {
+        pessoaDTO.limparCampoCpf();
         verifyIfIsAlreadyRegistered(pessoaDTO.getCpf(), null);
-        Pessoa beer = pessoaMapper.toModel(pessoaDTO);
-        Pessoa savedBeer = pessoaRepository.save(beer);
-        return pessoaMapper.toDTO(savedBeer);
+        Pessoa pessoa = pessoaMapper.toModel(pessoaDTO);
+        Pessoa savedPessoa = pessoaRepository.save(pessoa);
+        return pessoaMapper.toDTO(savedPessoa);
     }
 
     public PessoaDTO update(PessoaDTO pessoaDTO, Long id) throws PessoaAlreadyRegisteredException, PessoaNotFoundException {
+        pessoaDTO.limparCampoCpf();
         verifyIfExists(id);
         verifyIfIsAlreadyRegistered(pessoaDTO.getCpf(), id);
         pessoaDTO.setId(id);
         Pessoa pessoa = pessoaMapper.toModel(pessoaDTO);
-        Pessoa savedBeer = pessoaRepository.save(pessoa);
-        return pessoaMapper.toDTO(savedBeer);
+        Pessoa savedPessoa = pessoaRepository.save(pessoa);
+        return pessoaMapper.toDTO(savedPessoa);
     }
 
     public PessoaDTO findByCpf(String cpf) throws PessoaNotFoundException {
