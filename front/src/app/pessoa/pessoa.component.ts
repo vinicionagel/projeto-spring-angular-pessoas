@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Pessoa } from '../pessoa';
-import { PessoaService } from '../pessoa.service';
+import { Pessoa } from './pessoa';
+import { PessoaService } from './pessoa.service';
 import {ToastrService} from 'ngx-toastr';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {CustomValidators} from '../form-validator/form-validator.service';
+import {ConfirmDialogService} from '../confirm-dialog/confirm-dialog.service';
 
 @Component({
   selector: 'app-pessoa',
@@ -15,7 +16,9 @@ export class PessoaComponent implements OnInit {
   pessoas: Pessoa[];
   form: FormGroup;
 
-  constructor(private pessoaService: PessoaService, private toastr: ToastrService, private formBuilder: FormBuilder) { }
+
+  constructor(private pessoaService: PessoaService, private toastr: ToastrService,
+              private formBuilder: FormBuilder, private confirmationDialogService: ConfirmDialogService) { }
 
   ngOnInit() {
     this.buildForm();
@@ -39,7 +42,7 @@ export class PessoaComponent implements OnInit {
     });
   }
 
-  deletePessoa(pessoa: Pessoa) {
+  private deletePessoa(pessoa: Pessoa) {
     console.log(pessoa);
     this.pessoaService.deletePessoa(pessoa).subscribe(() => {
       this.carregarPessoas();
@@ -49,7 +52,7 @@ export class PessoaComponent implements OnInit {
     });
   }
 
-  submitForm() {
+  public submitForm() {
     this.form.markAllAsTouched();
     if (this.form.valid) {
       if (this.form.value.id) {
@@ -58,6 +61,15 @@ export class PessoaComponent implements OnInit {
       }
       this.addPessoa();
     }
+  }
+
+  public abrirConfirmationDialogDeletePessoa(pessoa: Pessoa) {
+    this.confirmationDialogService.confirm('Confirmar remoção', `Você realmente deseja excluir ${pessoa.nome} ?`)
+      .then((confirmed) => {
+        if (confirmed) {
+          this.deletePessoa(pessoa);
+        }
+      });
   }
 
   private addPessoa() {

@@ -1,57 +1,73 @@
 <app-menu></app-menu>
   <br/>
   <form autocomplete="off" [formGroup]="form" (ngSubmit)="submitForm()">
-    <div class="col-md-6 align-items-center" style="left: 25%">
+    <div class="panel panel-dark">
+      <div class="panel-body">
       <h2 class="text-center">Cadastro de Pessoa</h2>
       <input formControlName="id" class="form-control" id="id" type="hidden">
         <div class="form-group">
-          <label for="nome">Nome:</label>
-          <input placeholder="Nome" name="nome" formControlName="nome" class="form-control" id="nome">
-          <app-form-validator [control]="form.controls.nome" ></app-form-validator>
+          <label for="nome" class="col-md-1 control-label">Nome:<span class="text-danger">*</span></label>
+          <div class="col-md-12">
+            <input placeholder="Nome" name="nome" formControlName="nome" class="form-control" id="nome">
+            <app-form-validator [control]="form.controls.nome" ></app-form-validator>
+          </div>
         </div>
 
         <div class="form-group">
-          <label for="cpf">CPF:</label>
-          <input placeholder="000.000.000-00" type="text" mask="000.000.000-00" formControlName="cpf" class="form-control" name="cpf" id="cpf">
-          <app-form-validator [control]="form.controls.cpf" ></app-form-validator>
+          <label for="cpf" class="col-md-1 control-label">CPF:</label>
+          <div class="col-md-12">
+            <input placeholder="000.000.000-00" type="text" mask="000.000.000-00" formControlName="cpf" class="form-control" name="cpf" id="cpf">
+            <app-form-validator [control]="form.controls.cpf" ></app-form-validator>
+          </div>
         </div>
 
         <div class="form-group">
-          <label for="email">Email:</label>
-          <input placeholder="E-mail" type="email" name="E-mail" formControlName="email" class="form-control" id="email">
-          <app-form-validator [control]="form.controls.email" ></app-form-validator>
+          <label for="email" class="col-md-1 control-label">Email:</label>
+          <div class="col-md-12">
+            <input placeholder="E-mail" type="email" name="E-mail" formControlName="email" class="form-control" id="email">
+            <app-form-validator [control]="form.controls.email" ></app-form-validator>
+          </div>
         </div>
 
         <div class="form-group">
-          <label for="dataNascimento">Data Nascimento:</label>
-          <input type="date" placeholder="age" formControlName="dataNascimento" name="dataNascimento" class="form-control" id="dataNascimento">
-          <app-form-validator [control]="form.controls.dataNascimento" ></app-form-validator>
+          <label for="dataNascimento" class="col-md-2 control-label">Data Nascimento:</label>
+          <div class="col-md-12">
+            <input type="date" placeholder="age" formControlName="dataNascimento" name="dataNascimento" class="form-control" id="dataNascimento">
+            <app-form-validator [control]="form.controls.dataNascimento" ></app-form-validator>
+          </div>
         </div>
 
         <div class="form-group">
-          <label for="naturalidade">Nacionalidade:</label>
-          <input type="text" placeholder="nacionalidade" formControlName="nacionalidade" name="nacionalidade" class="form-control" id="nacionalidade">
+          <label for="naturalidade" class="col-md-1 control-label">Nacionalidade:</label>
+          <div class="col-md-12">
+            <input type="text" placeholder="nacionalidade" formControlName="nacionalidade" name="nacionalidade" class="form-control" id="nacionalidade">
+          </div>
         </div>
 
       <div class="form-group">
-        <label for="naturalidade">Naturalidade:</label>
-        <input type="text" placeholder="naturalidade" formControlName="naturalidade" name="naturalidade" class="form-control" id="naturalidade">
+        <label for="naturalidade" class="col-md-1 control-label">Naturalidade:</label>
+        <div class="col-md-12">
+          <input type="text" placeholder="naturalidade" formControlName="naturalidade" name="naturalidade" class="form-control" id="naturalidade">
+        </div>
       </div>
 
         <div class="form-group">
-          <input type="radio" formControlName="sexo" id="masculino" name="sexo" value="MASCULINO">
-          <label for="masculino"> Masculino</label><br>
-          <input type="radio" id="female" formControlName="sexo" value="FEMININO">
-          <label for="female"> Feminino</label><br>
+          <div class="col-md-12">
+            <input type="radio" formControlName="sexo" id="masculino" name="sexo" value="MASCULINO">
+            <label for="masculino"> Masculino</label><br>
+            <input type="radio" id="female" formControlName="sexo" value="FEMININO">
+            <label for="female"> Feminino</label><br>
+          </div>
         </div>
-        <button class="btn btn-success">Salvar</button>
+        <button class="btn btn-success" style="margin-left: 1%;">Salvar</button>
+      </div>
     </div>
   </form>
   <br/>
 
 <br/>
-<div class="col-md-6 align-items-center" style="left: 25%" >
-<h2 class="text-center">Listagem Pessoa</h2>
+<div class="col-md-12 align-items-center" >
+<h2 class="text-center">Listagem de Pessoa</h2>
 <br/>
   <div class="pessoa-body">
     <table class="table">
@@ -69,9 +85,9 @@
         <td>{{pessoa.nome}}</td>
         <td>{{pessoa.cpf}}</td>
         <td>
-          <div style="margin-left: 20%;">
+          <div style="margin-left: 40%;">
             <button type="button" class="btn btn-success btn-sm ml-1" (click)="carregarPessoaAlteracao(pessoa)">Alterar</button>
-            <button type="button" class="btn btn-danger btn-sm ml-1" (click)="deletePessoa(pessoa)">Deletar</button>
+            <button (click)="abrirConfirmationDialogDeletePessoa(pessoa)" type="button" class="btn btn-danger btn-sm ml-1">Deletar</button>
           </div>
         </td>
       </tr>
