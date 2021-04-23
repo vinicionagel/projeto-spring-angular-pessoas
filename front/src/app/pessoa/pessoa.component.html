@@ -1,8 +1,8 @@
 <app-menu></app-menu>
   <br/>
   <form autocomplete="off" [formGroup]="form" (ngSubmit)="submitForm()">
-    <div class="panel panel-dark">
-      <div class="panel-body">
+    <div class="card" style="margin-left: 2%;margin-right: 2%;">
+      <div class="card-body">
       <h2 class="text-center">Cadastro de Pessoa</h2>
       <input formControlName="id" class="form-control" id="id" type="hidden">
         <div class="form-group">
@@ -67,9 +67,10 @@
 
 <br/>
 <div class="col-md-12 align-items-center" >
-<h2 class="text-center">Listagem de Pessoa</h2>
+<h2 class="text-center">Listagem de Pessoa(s)</h2>
 <br/>
-  <div class="pessoa-body">
+  <div class="card" style="margin-left: 1%;margin-right: 1%;">
+    <div class="card-body">
     <table class="table">
       <thead>
       <tr>
@@ -93,5 +94,6 @@
       </tr>
       </tbody>
     </table>
+    </div>
   </div>
 </div>
