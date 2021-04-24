@@ -46,6 +46,7 @@ export class PessoaComponent implements OnInit {
     console.log(pessoa);
     this.pessoaService.deletePessoa(pessoa).subscribe(() => {
       this.carregarPessoas();
+      this.form.reset();
       this.toastr.success('Sucesso', 'Deletado', {
         timeOut: 3000,
       });
