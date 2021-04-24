@@ -18,6 +18,7 @@ import {FormValidatorComponent} from './form-validator/form-validator.component'
 import {NgxMaskModule} from 'ngx-mask';
 import { ConfirmationDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { ConfirmDialogService } from './confirm-dialog/confirm-dialog.service';
+import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { ConfirmDialogService } from './confirm-dialog/confirm-dialog.service';
     LoginComponent,
     FormValidatorComponent,
     ConfirmationDialogComponent,
-    LogoutComponent
+    LogoutComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

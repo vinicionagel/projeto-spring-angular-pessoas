@@ -8,7 +8,6 @@ import {Router} from '@angular/router';
 })
 export class AuthenticationService {
 
-  // BASE_PATH: 'http://localhost:8080'
   USER_NAME_SESSION_ATTRIBUTE_NAME = 'authenticatedUser';
   USER_NAME_SESSION_ATTRIBUTE_PASSWD = 'password';
 
@@ -16,8 +15,8 @@ export class AuthenticationService {
   public password: string;
 
   constructor(private http: HttpClient, private router: Router) {
-    if (this.isUserLoggedIn()) {
-      this.router.navigate(['/pessoa']);
+    if (!this.isUserLoggedIn()) {
+      this.router.navigate(['/']);
     }
   }
 

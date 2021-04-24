@@ -98,7 +98,7 @@ export class PessoaComponent implements OnInit {
     };
   }
 
-  carregarPessoaAlteracao(pessoa: Pessoa) {
+  public carregarPessoaAlteracao(pessoa: Pessoa) {
     this.form.setValue(pessoa);
   }
 
