@@ -32,7 +32,7 @@ public class PessoaController implements PessoaControllerDocs {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public PessoaDTO createBeer(@RequestBody @Valid PessoaDTO pessoaDTO) throws PessoaAlreadyRegisteredException {
+    public PessoaDTO createPessoa(@RequestBody @Valid PessoaDTO pessoaDTO) throws PessoaAlreadyRegisteredException {
         return pessoaService.createPessoa(pessoaDTO);
     }
 
@@ -43,7 +43,7 @@ public class PessoaController implements PessoaControllerDocs {
     }
 
     @GetMapping("/{cpf}")
-    public PessoaDTO findByName(@PathVariable String cpf) throws PessoaNotFoundException {
+    public PessoaDTO findByCpf(@PathVariable String cpf) throws PessoaNotFoundException {
         return pessoaService.findByCpf(cpf);
     }
 

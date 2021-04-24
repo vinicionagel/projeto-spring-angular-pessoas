@@ -19,14 +19,14 @@ public interface PessoaControllerDocs {
             @ApiResponse(code = 201, message = "Success pessoa creation"),
             @ApiResponse(code = 400, message = "Missing required fields or wrong field range value.")
     })
-    PessoaDTO createBeer(PessoaDTO pessoaDTO) throws PessoaAlreadyRegisteredException;
+    PessoaDTO createPessoa(PessoaDTO pessoaDTO) throws PessoaAlreadyRegisteredException;
 
     @ApiOperation(value = "Returns pessoa found by a given name")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Success pessoa found in the system"),
-            @ApiResponse(code = 404, message = "Beer with given name not found.")
+            @ApiResponse(code = 404, message = "Pessoa with given name not found.")
     })
-    PessoaDTO findByName(@PathVariable String name) throws PessoaNotFoundException;
+    PessoaDTO findByCpf(@PathVariable String name) throws PessoaNotFoundException;
 
     @ApiOperation(value = "Returns a list of all pessoa registered in the system")
     @ApiResponses(value = {
@@ -40,4 +40,11 @@ public interface PessoaControllerDocs {
             @ApiResponse(code = 404, message = "Pessoa with given id not found.")
     })
     void deleteById(@PathVariable Long id) throws PessoaNotFoundException;
+
+    @ApiOperation(value = "Update a pessoa found by a given valid Id")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Success pessoa updated in the system"),
+            @ApiResponse(code = 404, message = "Pessoa with given id not found.")
+    })
+    PessoaDTO update(PessoaDTO pessoaDTO, Long id) throws PessoaAlreadyRegisteredException, PessoaNotFoundException;
 }
