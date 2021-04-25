@@ -37,6 +37,7 @@ A aplicação deverá possuir um endpoint **/source** acessível sem autenticaç
 ```shell script
 mvn spring-boot:run 
 ```
+## Executando a aplicação...
 
 <h3>Para executar a suíte de testes desenvolvida:<h3>
 
