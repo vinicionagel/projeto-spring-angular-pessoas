@@ -1,6 +1,6 @@
 
 
-<###  1) Back-end
+1) Back-end
 A aplicação, a ser desenvolvida em Java, deverá expor uma API de cadastro, alteração, remoção e consulta de pessoas com as seguintes informações: 
  - Nome - obrigatório
  - Sexo
