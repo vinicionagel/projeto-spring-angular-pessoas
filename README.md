@@ -37,7 +37,9 @@ A aplicação deverá possuir um endpoint **/source** acessível sem autenticaç
 
 ## Executando a aplicação...
 
-Subir só o back-end...
+OBS: para parte do back-end é necessário ter o banco, no compose já sobe todos os conteiners.
+
+Subir só o back-end... 
 
 ```shell script
 mvn spring-boot:run 
