@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import {Router} from '@angular/router';
@@ -13,6 +13,7 @@ export class AuthenticationService {
 
   public username: string;
   public password: string;
+  private _source: string;
 
   constructor(private http: HttpClient, private router: Router) {
     if (!this.isUserLoggedIn()) {
@@ -28,10 +29,21 @@ export class AuthenticationService {
         this.registerSuccessfulLogin(username, password);
       }));
   }
-
-  // tslint:disable-next-line:ban-types
   createBasicAuthToken(username: string, password: string) {
     return 'Basic ' + window.btoa(`${username}:${password}`);
+  }
+
+  carregarSource() {
+    this.http.get<string>('http://localhost:8080/source', {
+      headers: new HttpHeaders({'Content-Type': 'application/json',  accept: 'text/plain'}),
+      responseType: 'text' as any
+    }).subscribe(value => {
+      this._source = value;
+    });
+  }
+
+  get source(): string {
+    return this._source;
   }
 
   registerSuccessfulLogin(username, password) {

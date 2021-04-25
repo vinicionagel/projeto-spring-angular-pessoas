@@ -5,10 +5,13 @@
         <a *ngIf="isLoggedIn" class="nav-link" href="/home">Home</a>
       </li>
       <li class="nav-item active">
-      <a *ngIf="isLoggedIn" class="nav-link" href="/pessoa">Cadastro de Pessoa</a>
+      <a *ngIf="isLoggedIn" class="nav-link" style="margin-left: 20px;" href="/pessoa">Cadastro de Pessoa</a>
       </li>
     </ul>
     <ul class="navbar-nav navbar-collapse justify-content-end">
+      <li class="nav-item active">
+        <a class="nav-link" [href]="getSource()" target="_blank" style="margin-right: 20px;">Acesso ao GIT</a>
+      </li>
         <li class="nav-item active">
           <a *ngIf="isLoggedIn" class="nav-link" href="/logout" (click)=handleLogout()>Logout</a>
         </li>
