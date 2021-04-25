@@ -34,11 +34,6 @@ A aplicação deverá possuir um endpoint **/source** acessível sem autenticaç
 6) Implementar Chat entre as pessoas que estão na aplicação
 7) Versão 2 da API que deve incluir endereço da pessoa como dado obrigatório. Versão 1 deve continuar funcionando. 
 
-## Prazo e retorno
-Isso será combinado com quem você fez a entrevista. Você terá tempo para entender o cenário e nos retornar um prazo.
-Lembre-se: Prazo dado é prazo cumprido.
-
-
 ```shell script
 mvn spring-boot:run 
 ```
