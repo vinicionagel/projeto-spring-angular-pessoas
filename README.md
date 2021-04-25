@@ -34,10 +34,14 @@ A aplicação deverá possuir um endpoint **/source** acessível sem autenticaç
 6) Implementar Chat entre as pessoas que estão na aplicação
 7) Versão 2 da API que deve incluir endereço da pessoa como dado obrigatório. Versão 1 deve continuar funcionando. 
 
+
+## Executando a aplicação...
+
+Subir só o back-end...
+
 ```shell script
 mvn spring-boot:run 
 ```
-## Executando a aplicação...
 
 <h3>Para executar a suíte de testes desenvolvida:<h3>
 
