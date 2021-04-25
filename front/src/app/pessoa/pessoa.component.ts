@@ -43,10 +43,12 @@ export class PessoaComponent implements OnInit {
   }
 
   private deletePessoa(pessoa: Pessoa) {
-    console.log(pessoa);
+    const mesmaPessoaEmAlteracaoDelete = this.form.value.id === pessoa.id;
+    if (mesmaPessoaEmAlteracaoDelete) {
+      this.form.reset();
+    }
     this.pessoaService.deletePessoa(pessoa).subscribe(() => {
       this.carregarPessoas();
-      this.form.reset();
       this.toastr.success('Sucesso', 'Deletado', {
         timeOut: 3000,
       });
