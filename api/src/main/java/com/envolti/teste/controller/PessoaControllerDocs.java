@@ -26,7 +26,7 @@ public interface PessoaControllerDocs {
             @ApiResponse(code = 200, message = "Success pessoa found in the system"),
             @ApiResponse(code = 404, message = "Pessoa with given name not found.")
     })
-    PessoaDTO findByCpf(@PathVariable String name) throws PessoaNotFoundException;
+    PessoaDTO findByCpf(@PathVariable String cpf) throws PessoaNotFoundException;
 
     @ApiOperation(value = "Returns a list of all pessoa registered in the system")
     @ApiResponses(value = {
