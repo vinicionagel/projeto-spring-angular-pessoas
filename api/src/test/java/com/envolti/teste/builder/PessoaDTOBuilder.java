@@ -42,6 +42,7 @@ public class PessoaDTOBuilder {
                 dataNascimento,
                 nacionalidade,
                 naturalidade,
-                cpf);
+                cpf,
+                null);
     }
 }

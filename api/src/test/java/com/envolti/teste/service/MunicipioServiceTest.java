@@ -1,11 +1,7 @@
 package com.envolti.teste.service;
 
-import com.envolti.teste.builder.EstadoDTOBuilder;
 import com.envolti.teste.builder.MunicipioDTOBuilder;
-import com.envolti.teste.dto.EstadoDTO;
 import com.envolti.teste.dto.MunicipioDTO;
-import com.envolti.teste.entity.Estado;
-import com.envolti.teste.entity.Municipio;
 import com.envolti.teste.mapper.MunicipioMapper;
 import com.envolti.teste.repository.MunicipioRepository;
 import org.junit.jupiter.api.Test;
@@ -37,8 +33,8 @@ public class MunicipioServiceTest {
 
     @Test
     void whenFindByEstadoIsCalledThenReturnAnListOfMunicipiosByEstado() {
-        MunicipioDTO municipioDTO = MunicipioDTOBuilder.builder().build().toMunicipioDTO();
-        Municipio expectedFoundMunicipio = municipioMapper.toModel(municipioDTO);
+        var municipioDTO = MunicipioDTOBuilder.builder().build().toMunicipioDTO();
+        var expectedFoundMunicipio = municipioMapper.toModel(municipioDTO);
 
         when(municipioRepository.findByEstadoId(25l)).thenReturn(Collections.singletonList(expectedFoundMunicipio));
 

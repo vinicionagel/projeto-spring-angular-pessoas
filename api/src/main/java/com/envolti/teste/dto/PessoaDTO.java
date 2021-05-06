@@ -43,6 +43,8 @@ public class PessoaDTO {
     @NotNull
     private String cpf;
 
+    private EnderecoDTO enderecoDTO;
+
     public void limparCampoCpf() {
         this.cpf = cpf.replaceAll("[^0-9]", "");
     }

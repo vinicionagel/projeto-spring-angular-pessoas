@@ -1,7 +1,6 @@
 package com.envolti.teste.service;
 
 import com.envolti.teste.dto.EstadoDTO;
-import com.envolti.teste.dto.PessoaDTO;
 import com.envolti.teste.mapper.EstadoMapper;
 import com.envolti.teste.repository.EstadoRepository;
 import lombok.AllArgsConstructor;

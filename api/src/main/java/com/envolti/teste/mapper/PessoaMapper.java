@@ -5,7 +5,7 @@ import com.envolti.teste.entity.Pessoa;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
-@Mapper
+@Mapper(uses = {EnderecoMapper.class})
 public interface PessoaMapper {
 
     PessoaMapper INSTANCE = Mappers.getMapper(PessoaMapper.class);
