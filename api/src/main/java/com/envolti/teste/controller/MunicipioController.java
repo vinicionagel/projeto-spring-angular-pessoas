@@ -1,7 +1,6 @@
 package com.envolti.teste.controller;
 
 import com.envolti.teste.dto.MunicipioDTO;
-import com.envolti.teste.exception.PessoaNotFoundException;
 import com.envolti.teste.service.MunicipioService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

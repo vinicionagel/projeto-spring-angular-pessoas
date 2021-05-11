@@ -11,9 +11,9 @@ public interface MunicipioMapper {
 
     MunicipioMapper INSTANCE = Mappers.getMapper(MunicipioMapper.class);
 
-    @Mapping(source = "estadoDTO", target = "estado")
+    @Mapping(source = "estado", target = "estado")
     Municipio toModel(MunicipioDTO municipioDTO);
 
-    @Mapping(source = "estado", target = "estadoDTO")
+    @Mapping(source = "estado", target = "estado")
     MunicipioDTO toDTO(Municipio municipio);
 }

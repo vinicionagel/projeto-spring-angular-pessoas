@@ -13,7 +13,7 @@ import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
-@RequestMapping("/api/v1/estado")
+@RequestMapping("/api/v1/estados")
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class EstadoController implements EstadoControllerDocs {
 

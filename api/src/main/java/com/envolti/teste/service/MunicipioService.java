@@ -1,7 +1,6 @@
 package com.envolti.teste.service;
 
 import com.envolti.teste.dto.MunicipioDTO;
-import com.envolti.teste.exception.PessoaNotFoundException;
 import com.envolti.teste.mapper.MunicipioMapper;
 import com.envolti.teste.repository.MunicipioRepository;
 import lombok.AllArgsConstructor;

@@ -23,7 +23,7 @@ public class Municipio {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "id_estado", referencedColumnName = "id")
+    @JoinColumn(name = "estado_id", referencedColumnName = "id")
     private Estado estado;
 
     private String nome;

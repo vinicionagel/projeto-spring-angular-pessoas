@@ -15,6 +15,6 @@ public class MunicipioDTO {
 
     private String nome;
 
-    private EstadoDTO estadoDTO;
+    private EstadoDTO estado;
 
 }
